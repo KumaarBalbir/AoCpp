@@ -15,6 +15,7 @@ int main()
 
   string curline;
   long long totArea = 0;
+  long long totRibbon = 0;
 
   while(getline(ifn, curline))
     {
@@ -36,8 +37,11 @@ int main()
       long long h = stoi(curline.substr(pos2));
       totArea += 2*l*w + 2*w*h + 2*h*l;
       totArea += min(min(l*w, l*h), w*h);
+      totRibbon += (l*w*h);
+      totRibbon += min(min(2*(l+w), 2*(l+h)), 2*(h+w));
     }
   cout<<"ans: "<<totArea<<"\n";
+  cout<<"tot ribbon: "<<totRibbon<<"\n";
   return 0;
 }
       
