@@ -22,6 +22,7 @@ int main()
   int floor = 0;
 
   int len = ip.size();
+  int idx = -1;
   for(int i=0;i<len;i++)
     {
       if( ip[i]=='(')
@@ -31,7 +32,17 @@ int main()
 	{
 	  floor--;
 	}
+      if(idx == -1)
+	{
+	  if(floor == -1)
+	    {
+	      idx = i+1;
+	    }
+	}
     }
     cout<<"ans: "<<floor<<"\n";
+    cout<<"index: "<<idx<<"\n";
+    
+    
   return 0;
 }
