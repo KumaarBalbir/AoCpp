@@ -12,6 +12,9 @@ int main()
   int x = 0;
   int y = 0;
 
+  int x2 = 0;
+  int y2 = 0;
+
   set<pair<int,int>> uniqLocation;
   uniqLocation.insert({x,y});
   
@@ -23,11 +26,14 @@ int main()
     }
 
   string curline;
+  bool flag = true;
   
   while(getline(ifs,curline))
     {
       for(char &ch: curline)
 	{
+	  if(flag)
+	    {
 	  if(ch == '^')
 	    {
 	      y += 1;
@@ -44,7 +50,30 @@ int main()
 	    {
 	      x -= 1;
 	    }
-	  uniqLocation.insert({x,y});
+	  flag = false;
+	  uniqLocation.insert({x,y});}
+	  else
+	    {
+	        if(ch == '^')
+	    {
+	      y2 += 1;
+	    }
+	  else if(ch == 'v')
+	    {
+	      y2 -= 1;
+	    }
+	  else if(ch == '>')
+	    {
+	      x2 += 1;
+	    }
+	  else if(ch == '<')
+	    {
+	      x2 -= 1;
+	    }
+		uniqLocation.insert({x2,y2});
+		flag = true;
+	    }
+	      
 	}
     }
   ifs.close();
