@@ -10,7 +10,38 @@ unordered_map<std::string, int> exclMap;
 
 std::unordered_map<int,int>vowels;
 
-
+bool isNice2(string str)
+{
+  bool ok = false;
+  int n = str.length();
+  for(int i=0;i<n-2;i++)
+    {
+      if(str[i] == str[i+2])
+	{
+	  ok = true;
+	  break;
+	}
+    }
+  if(!ok)return false;
+  ok = false;
+  for(int i=0;i<n-3;i++)
+    {
+      for(int j=i+2;j<n-1;j++)
+	{
+	  if(str.substr(i,2) == str.substr(j,2))
+	    {
+	      ok = true;
+	      break;
+	    }
+	}
+      if(ok)
+	{
+	  break;
+	}
+    }
+  if(!ok)return false;
+  return true;
+}
 
 bool isNice(string str)
 {
@@ -81,7 +112,6 @@ vowels[8] = 1; // i
 vowels[14] = 1; // o
 vowels[20] = 1; // u
 
- printf("%d", int('e'-'a'));
 
   string fn = "day5-ip.txt";
   ifstream ifs(fn);
@@ -103,7 +133,7 @@ vowels[20] = 1; // u
       // 	  break;
       // 	}
       // transform(curline.begin(), curline.end(), curline.begin(), ::tolower);
-      if(isNice(curline))
+      if(isNice2(curline))
 	{
 	  cnt++;
 	}
