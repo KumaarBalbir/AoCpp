@@ -96,7 +96,7 @@ int main()
   int W = 1000;
   int H = 1000;
   // initialize 2d grid W x H with false
-  vector<vector<bool>> grid(W, vector<bool>(H, false));
+  vector<vector<int>> grid(W, vector<int>(H, 0));
   string curline;
   int commandType, x1, y1, x2, y2;
   int res[5];
@@ -116,15 +116,18 @@ int main()
         {
           if (commandType == 1)
           {
-            grid[i][j] = true;
+            grid[i][j] += 1;
           }
           else if (commandType == 2)
           {
-            grid[i][j] = false;
+            if (grid[i][j] > 0)
+            {
+              grid[i][j] -= 1;
+            }
           }
           else
           {
-            grid[i][j] = !grid[i][j];
+            grid[i][j] += 2;
           }
         }
       }
@@ -137,30 +140,30 @@ int main()
         {
           if (commandType == 1)
           {
-            grid[i][j] = true;
+            grid[i][j] += 1;
           }
           else if (commandType == 2)
           {
-            grid[i][j] = false;
+            if (grid[i][j] > 0)
+            {
+              grid[i][j] -= 1;
+            }
           }
           else
           {
-            grid[i][j] = !grid[i][j];
+            grid[i][j] += 2;
           }
         }
       }
     }
   }
-  int totalOn = 0;
+  int totalBright = 0;
   for (int i = 0; i < W; i++)
     for (int j = 0; j < H; j++)
     {
-      if (grid[i][j])
-      {
-        totalOn++;
-      }
+      totalBright += grid[i][j];
     }
-  cout << "ans: = " << totalOn << "\n";
+  cout << "ans: = " << totalBright << "\n";
 
   return 0;
 }
